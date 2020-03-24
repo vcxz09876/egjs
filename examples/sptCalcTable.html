@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css"
+        href="https://docs.handsontable.com/0.35.0/bower_components/handsontable/dist/handsontable.full.min.css">
+
+    <script type="text/javascript"
+        src="https://docs.handsontable.com/0.35.0/bower_components/handsontable/dist/handsontable.full.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+
+
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/tableTools.tableCalculator.js"></script>
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/tableTools.HOTUtils.js"></script>
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/tablesOnHOT.js"></script>
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/cagCalcTable.js"></script>
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/sptFactTable.js"></script>
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/sptCalcTable.js"></script>
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/groundLaboratoryFactsTable.js"></script>
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/groundLaboratoryCalcTable.js"></script>
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/cptFactTable.js"></script>
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/cptCalcTable.js"></script>
+
+    <style>
+        .sptCalcTable th:nth-child(4),
+        .sptCalcTable th:nth-child(5),
+        .sptCalcTable th:nth-child(6),
+        .sptCalcTable th:nth-child(7),
+        .sptCalcTable th:nth-child(8) {
+            background-color: #64ce92;
+        }
+
+        .sptCalcTable th:nth-child(9),
+        .sptCalcTable th:nth-child(10),
+        .sptCalcTable th:nth-child(11),
+        .sptCalcTable th:nth-child(12),
+        .sptCalcTable th:nth-child(13),
+        .sptCalcTable th:nth-child(14),
+        .sptCalcTable th:nth-child(15),
+        .sptCalcTable th:nth-child(16) {
+            background-color: #fdc35f;
+        }
+    </style>
+</head>
+
+<div id="sptCalcTable" class="sptCalcTable"></div>
+
+<body>
+
+    <script type="text/javascript">
+        // Set target to 'sptCalcTable' element
+        var tab1 = new tablesOnHOT.sptCalcTable('sptCalcTable');
+
+        // Pass initial data as overrideConfig argument
+        hot = tab1.render({});
+    </script>
+</body>
+
+</html>

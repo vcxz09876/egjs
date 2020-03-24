@@ -1,0 +1,2793 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css"
+        href="https://docs.handsontable.com/0.35.0/bower_components/handsontable/dist/handsontable.full.min.css">
+
+    <script type="text/javascript"
+        src="https://docs.handsontable.com/0.35.0/bower_components/handsontable/dist/handsontable.full.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+
+
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/tableTools.tableCalculator.js"></script>
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/tableTools.HOTUtils.js"></script>
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/tablesOnHOT.js"></script>
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/cagCalcTable.js"></script>
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/sptFactTable.js"></script>
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/sptCalcTable.js"></script>
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/groundLaboratoryFactsTable.js"></script>
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/groundLaboratoryCalcTable.js"></script>
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/cptFactTable.js"></script>
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/cptCalcTable.js"></script>
+
+    <style>
+        /*
+##########################################################################################################
+defaultLaboratoryFactsTable Styles
+##########################################################################################################
+*/
+
+
+        /* meta*/
+
+        .defaultLaboratoryFactsTable th:nth-child(2),
+
+        /*'N'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(3),
+
+        /*'скв.'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(4),
+
+        /*'обр.'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(5),
+
+        /*'от'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(6)
+        /*'до'*/
+
+            {
+            background-color: #ddeaff;
+        }
+
+
+        /* calculated first*/
+
+        .defaultLaboratoryFactsTable th:nth-child(17),
+
+        /*'>10'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(18),
+
+        /*'10-5'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(19),
+
+        /*'5-2'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(20),
+
+        /*'2-1'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(21),
+
+        /*'1-0.5'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(22),
+
+        /*'0.5-0.25'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(23),
+
+        /*'0.25-0.01'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(24),
+
+        /*'>0.1'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(25),
+
+        /*'>0.05'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(32),
+
+        /*'W'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(38),
+
+        /*'p'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(47),
+
+        /*'k'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(54),
+
+        /*'Wl'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(61),
+
+        /*'Wp'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(70)
+        /*'ППП'*/
+
+            {
+            background-color: #64ce92;
+        }
+
+
+        /* calculated second*/
+
+        .defaultLaboratoryFactsTable th:nth-child(39),
+
+        /*'pd'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(41),
+
+        /*'n'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(42),
+
+        /*'e'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(43),
+
+        /*'Sr'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(62),
+
+        /*'Ip'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(63),
+
+        /*'Il'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(71),
+
+        /*'Iom'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(73)
+        /*'Г-Т'*/
+
+            {
+            background-color: #fdc35f;
+        }
+
+
+        /* first*/
+
+        .defaultLaboratoryFactsTable th:nth-child(7),
+
+        /*'P0'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(8),
+
+        /*'P10'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(9),
+
+        /*'P5'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(10),
+
+        /*'P2'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(11),
+
+        /*'P1'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(12),
+
+        /*'P0.5'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(13),
+
+        /*'P0.25'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(14),
+
+        /*'P0.01'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(15),
+
+        /*'>0.1'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(16),
+
+        /*'P0.05'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(26),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(27),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(28),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(33),
+
+        /*'hb'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(34),
+
+        /*'ht'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(35),
+
+        /*'h0'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(36),
+
+        /*'s0'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(37),
+
+        /*'m'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(44),
+
+        /*'dh'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(45),
+
+        /*'dt'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(46),
+
+        /*'kt'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(48),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(49),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(50),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(55),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(56),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(57),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(64),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(65),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(66),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(72)
+        /*'CaCO3'*/
+
+            {
+            background-color: #fdffb2;
+        }
+
+
+        /* second*/
+
+        .defaultLaboratoryFactsTable th:nth-child(29),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(30),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(31),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(51),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(52),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(53),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(58),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(59),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(60),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(67),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(68),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTable th:nth-child(69)
+        /*'q0'*/
+
+            {
+            background-color: #e7ffd5;
+        }
+
+
+        /*
+##########################################################################################################
+defaultLaboratoryFactsTableHide Styles
+##########################################################################################################
+*/
+
+        .defaultLaboratoryFactsTableHide {}
+
+        .defaultLaboratoryFactsTableHide_M1 th:nth-child(17),
+        .defaultLaboratoryFactsTableHide_M1 td:nth-child(17),
+
+        /*'>10'*/
+
+        .defaultLaboratoryFactsTableHide_M1 th:nth-child(18),
+        .defaultLaboratoryFactsTableHide_M1 td:nth-child(18),
+
+        /*'10-5'*/
+
+        .defaultLaboratoryFactsTableHide_M1 th:nth-child(19),
+        .defaultLaboratoryFactsTableHide_M1 td:nth-child(19),
+
+        /*'5-2'*/
+
+        .defaultLaboratoryFactsTableHide_M1 th:nth-child(20),
+        .defaultLaboratoryFactsTableHide_M1 td:nth-child(20),
+
+        /*'2-1'*/
+
+        .defaultLaboratoryFactsTableHide_M1 th:nth-child(21),
+        .defaultLaboratoryFactsTableHide_M1 td:nth-child(21),
+
+        /*'1-0.5'*/
+
+        .defaultLaboratoryFactsTableHide_M1 th:nth-child(22),
+        .defaultLaboratoryFactsTableHide_M1 td:nth-child(22),
+
+        /*'0.5-0.25'*/
+
+        .defaultLaboratoryFactsTableHide_M1 th:nth-child(23),
+        .defaultLaboratoryFactsTableHide_M1 td:nth-child(23),
+
+        /*'0.25-0.01'*/
+
+        .defaultLaboratoryFactsTableHide_M1 th:nth-child(24),
+        .defaultLaboratoryFactsTableHide_M1 td:nth-child(24),
+
+        /*'>0.1'*/
+
+        .defaultLaboratoryFactsTableHide_M1 th:nth-child(25),
+        .defaultLaboratoryFactsTableHide_M1 td:nth-child(25),
+
+        /*'>0.05'*/
+
+        .defaultLaboratoryFactsTableHide_M1 th:nth-child(29),
+        .defaultLaboratoryFactsTableHide_M1 td:nth-child(29),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_M1 th:nth-child(30),
+        .defaultLaboratoryFactsTableHide_M1 td:nth-child(30),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_M1 th:nth-child(31),
+        .defaultLaboratoryFactsTableHide_M1 td:nth-child(31),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_M1 th:nth-child(51),
+        .defaultLaboratoryFactsTableHide_M1 td:nth-child(51),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_M1 th:nth-child(52),
+        .defaultLaboratoryFactsTableHide_M1 td:nth-child(52),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_M1 th:nth-child(53),
+        .defaultLaboratoryFactsTableHide_M1 td:nth-child(53),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_M1 th:nth-child(58),
+        .defaultLaboratoryFactsTableHide_M1 td:nth-child(58),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_M1 th:nth-child(59),
+        .defaultLaboratoryFactsTableHide_M1 td:nth-child(59),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_M1 th:nth-child(60),
+        .defaultLaboratoryFactsTableHide_M1 td:nth-child(60),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_M1 th:nth-child(67),
+        .defaultLaboratoryFactsTableHide_M1 td:nth-child(67),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_M1 th:nth-child(68),
+        .defaultLaboratoryFactsTableHide_M1 td:nth-child(68),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_M1 th:nth-child(69),
+        .defaultLaboratoryFactsTableHide_M1 td:nth-child(69)
+        /*'q0'*/
+
+            {
+            display: none;
+        }
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(7),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(7),
+
+        /*'P0'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(8),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(8),
+
+        /*'P10'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(9),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(9),
+
+        /*'P5'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(10),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(10),
+
+        /*'P2'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(11),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(11),
+
+        /*'P1'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(12),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(12),
+
+        /*'P0.5'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(13),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(13),
+
+        /*'P0.25'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(14),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(14),
+
+        /*'P0.01'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(15),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(15),
+
+        /*'>0.1'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(16),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(16),
+
+        /*'P0.05'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(17),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(17),
+
+        /*'>10'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(18),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(18),
+
+        /*'10-5'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(19),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(19),
+
+        /*'5-2'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(20),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(20),
+
+        /*'2-1'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(21),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(21),
+
+        /*'1-0.5'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(22),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(22),
+
+        /*'0.5-0.25'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(23),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(23),
+
+        /*'0.25-0.01'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(24),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(24),
+
+        /*'>0.1'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(25),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(25),
+
+        /*'>0.05'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(26),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(26),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(27),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(27),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(28),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(28),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(29),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(29),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(30),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(30),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(31),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(31),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(32),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(32),
+
+        /*'W'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(33),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(33),
+
+        /*'hb'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(34),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(34),
+
+        /*'ht'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(35),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(35),
+
+        /*'h0'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(36),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(36),
+
+        /*'s0'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(37),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(37),
+
+        /*'m'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(38),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(38),
+
+        /*'p'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(39),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(39),
+
+        /*'pd'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(40),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(40),
+
+        /*'ps'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(41),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(41),
+
+        /*'n'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(42),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(42),
+
+        /*'e'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(43),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(43),
+
+        /*'Sr'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(44),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(44),
+
+        /*'dh'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(45),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(45),
+
+        /*'dt'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(46),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(46),
+
+        /*'kt'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(47),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(47),
+
+        /*'k'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(48),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(48),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(49),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(49),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(50),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(50),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(51),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(51),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(52),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(52),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(53),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(53),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(54),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(54),
+
+        /*'Wl'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(55),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(55),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(56),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(56),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(57),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(57),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(58),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(58),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(59),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(59),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(60),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(60),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(61),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(61),
+
+        /*'Wp'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(62),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(62),
+
+        /*'Ip'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(63),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(63),
+
+        /*'Il'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(64),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(64),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(65),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(65),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(66),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(66),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(67),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(67),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(68),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(68),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(69),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(69),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(70),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(70),
+
+        /*'ППП'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(71),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(71),
+
+        /*'Iom'*/
+
+        .defaultLaboratoryFactsTableHide_None th:nth-child(72),
+        .defaultLaboratoryFactsTableHide_None td:nth-child(72)
+        /*'CaCO3'*/
+
+            {
+            display: none;
+        }
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(17),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(17),
+
+        /*'>10'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(18),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(18),
+
+        /*'10-5'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(19),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(19),
+
+        /*'5-2'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(20),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(20),
+
+        /*'2-1'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(21),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(21),
+
+        /*'1-0.5'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(22),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(22),
+
+        /*'0.5-0.25'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(23),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(23),
+
+        /*'0.25-0.01'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(24),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(24),
+
+        /*'>0.1'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(25),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(25),
+
+        /*'>0.05'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(29),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(29),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(30),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(30),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(31),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(31),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(33),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(33),
+
+        /*'hb'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(34),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(34),
+
+        /*'ht'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(35),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(35),
+
+        /*'h0'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(36),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(36),
+
+        /*'s0'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(37),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(37),
+
+        /*'m'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(38),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(38),
+
+        /*'p'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(39),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(39),
+
+        /*'pd'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(40),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(40),
+
+        /*'ps'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(41),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(41),
+
+        /*'n'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(42),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(42),
+
+        /*'e'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(43),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(43),
+
+        /*'Sr'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(51),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(51),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(52),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(52),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(53),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(53),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(58),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(58),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(59),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(59),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(60),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(60),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(67),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(67),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(68),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(68),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_S1 th:nth-child(69),
+        .defaultLaboratoryFactsTableHide_S1 td:nth-child(69)
+        /*'q0'*/
+
+            {
+            display: none;
+        }
+
+        .defaultLaboratoryFactsTableHide_S2 th:nth-child(17),
+        .defaultLaboratoryFactsTableHide_S2 td:nth-child(17),
+
+        /*'>10'*/
+
+        .defaultLaboratoryFactsTableHide_S2 th:nth-child(18),
+        .defaultLaboratoryFactsTableHide_S2 td:nth-child(18),
+
+        /*'10-5'*/
+
+        .defaultLaboratoryFactsTableHide_S2 th:nth-child(19),
+        .defaultLaboratoryFactsTableHide_S2 td:nth-child(19),
+
+        /*'5-2'*/
+
+        .defaultLaboratoryFactsTableHide_S2 th:nth-child(20),
+        .defaultLaboratoryFactsTableHide_S2 td:nth-child(20),
+
+        /*'2-1'*/
+
+        .defaultLaboratoryFactsTableHide_S2 th:nth-child(21),
+        .defaultLaboratoryFactsTableHide_S2 td:nth-child(21),
+
+        /*'1-0.5'*/
+
+        .defaultLaboratoryFactsTableHide_S2 th:nth-child(22),
+        .defaultLaboratoryFactsTableHide_S2 td:nth-child(22),
+
+        /*'0.5-0.25'*/
+
+        .defaultLaboratoryFactsTableHide_S2 th:nth-child(23),
+        .defaultLaboratoryFactsTableHide_S2 td:nth-child(23),
+
+        /*'0.25-0.01'*/
+
+        .defaultLaboratoryFactsTableHide_S2 th:nth-child(24),
+        .defaultLaboratoryFactsTableHide_S2 td:nth-child(24),
+
+        /*'>0.1'*/
+
+        .defaultLaboratoryFactsTableHide_S2 th:nth-child(25),
+        .defaultLaboratoryFactsTableHide_S2 td:nth-child(25),
+
+        /*'>0.05'*/
+
+        .defaultLaboratoryFactsTableHide_S2 th:nth-child(33),
+        .defaultLaboratoryFactsTableHide_S2 td:nth-child(33),
+
+        /*'hb'*/
+
+        .defaultLaboratoryFactsTableHide_S2 th:nth-child(34),
+        .defaultLaboratoryFactsTableHide_S2 td:nth-child(34),
+
+        /*'ht'*/
+
+        .defaultLaboratoryFactsTableHide_S2 th:nth-child(35),
+        .defaultLaboratoryFactsTableHide_S2 td:nth-child(35),
+
+        /*'h0'*/
+
+        .defaultLaboratoryFactsTableHide_S2 th:nth-child(36),
+        .defaultLaboratoryFactsTableHide_S2 td:nth-child(36),
+
+        /*'s0'*/
+
+        .defaultLaboratoryFactsTableHide_S2 th:nth-child(37),
+        .defaultLaboratoryFactsTableHide_S2 td:nth-child(37),
+
+        /*'m'*/
+
+        .defaultLaboratoryFactsTableHide_S2 th:nth-child(38),
+        .defaultLaboratoryFactsTableHide_S2 td:nth-child(38),
+
+        /*'p'*/
+
+        .defaultLaboratoryFactsTableHide_S2 th:nth-child(39),
+        .defaultLaboratoryFactsTableHide_S2 td:nth-child(39),
+
+        /*'pd'*/
+
+        .defaultLaboratoryFactsTableHide_S2 th:nth-child(40),
+        .defaultLaboratoryFactsTableHide_S2 td:nth-child(40),
+
+        /*'ps'*/
+
+        .defaultLaboratoryFactsTableHide_S2 th:nth-child(41),
+        .defaultLaboratoryFactsTableHide_S2 td:nth-child(41),
+
+        /*'n'*/
+
+        .defaultLaboratoryFactsTableHide_S2 th:nth-child(42),
+        .defaultLaboratoryFactsTableHide_S2 td:nth-child(42),
+
+        /*'e'*/
+
+        .defaultLaboratoryFactsTableHide_S2 th:nth-child(43),
+        .defaultLaboratoryFactsTableHide_S2 td:nth-child(43)
+        /*'Sr'*/
+
+            {
+            display: none;
+        }
+
+        .defaultLaboratoryFactsTableHide_MS2 th:nth-child(17),
+        .defaultLaboratoryFactsTableHide_MS2 td:nth-child(17),
+
+        /*'>10'*/
+
+        .defaultLaboratoryFactsTableHide_MS2 th:nth-child(18),
+        .defaultLaboratoryFactsTableHide_MS2 td:nth-child(18),
+
+        /*'10-5'*/
+
+        .defaultLaboratoryFactsTableHide_MS2 th:nth-child(19),
+        .defaultLaboratoryFactsTableHide_MS2 td:nth-child(19),
+
+        /*'5-2'*/
+
+        .defaultLaboratoryFactsTableHide_MS2 th:nth-child(20),
+        .defaultLaboratoryFactsTableHide_MS2 td:nth-child(20),
+
+        /*'2-1'*/
+
+        .defaultLaboratoryFactsTableHide_MS2 th:nth-child(21),
+        .defaultLaboratoryFactsTableHide_MS2 td:nth-child(21),
+
+        /*'1-0.5'*/
+
+        .defaultLaboratoryFactsTableHide_MS2 th:nth-child(22),
+        .defaultLaboratoryFactsTableHide_MS2 td:nth-child(22),
+
+        /*'0.5-0.25'*/
+
+        .defaultLaboratoryFactsTableHide_MS2 th:nth-child(23),
+        .defaultLaboratoryFactsTableHide_MS2 td:nth-child(23),
+
+        /*'0.25-0.01'*/
+
+        .defaultLaboratoryFactsTableHide_MS2 th:nth-child(24),
+        .defaultLaboratoryFactsTableHide_MS2 td:nth-child(24),
+
+        /*'>0.1'*/
+
+        .defaultLaboratoryFactsTableHide_MS2 th:nth-child(25),
+        .defaultLaboratoryFactsTableHide_MS2 td:nth-child(25),
+
+        /*'>0.05'*/
+
+        .defaultLaboratoryFactsTableHide_MS2 th:nth-child(48),
+        .defaultLaboratoryFactsTableHide_MS2 td:nth-child(48),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_MS2 th:nth-child(49),
+        .defaultLaboratoryFactsTableHide_MS2 td:nth-child(49),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_MS2 th:nth-child(50),
+        .defaultLaboratoryFactsTableHide_MS2 td:nth-child(50),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_MS2 th:nth-child(51),
+        .defaultLaboratoryFactsTableHide_MS2 td:nth-child(51),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_MS2 th:nth-child(52),
+        .defaultLaboratoryFactsTableHide_MS2 td:nth-child(52),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_MS2 th:nth-child(53),
+        .defaultLaboratoryFactsTableHide_MS2 td:nth-child(53),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_MS2 th:nth-child(54),
+        .defaultLaboratoryFactsTableHide_MS2 td:nth-child(54),
+
+        /*'Wl'*/
+
+        .defaultLaboratoryFactsTableHide_MS2 th:nth-child(55),
+        .defaultLaboratoryFactsTableHide_MS2 td:nth-child(55),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_MS2 th:nth-child(56),
+        .defaultLaboratoryFactsTableHide_MS2 td:nth-child(56),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_MS2 th:nth-child(57),
+        .defaultLaboratoryFactsTableHide_MS2 td:nth-child(57),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_MS2 th:nth-child(58),
+        .defaultLaboratoryFactsTableHide_MS2 td:nth-child(58),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_MS2 th:nth-child(59),
+        .defaultLaboratoryFactsTableHide_MS2 td:nth-child(59),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_MS2 th:nth-child(60),
+        .defaultLaboratoryFactsTableHide_MS2 td:nth-child(60),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_MS2 th:nth-child(61),
+        .defaultLaboratoryFactsTableHide_MS2 td:nth-child(61),
+
+        /*'Wp'*/
+
+        .defaultLaboratoryFactsTableHide_MS2 th:nth-child(62),
+        .defaultLaboratoryFactsTableHide_MS2 td:nth-child(62),
+
+        /*'Ip'*/
+
+        .defaultLaboratoryFactsTableHide_MS2 th:nth-child(63),
+        .defaultLaboratoryFactsTableHide_MS2 td:nth-child(63)
+        /*'Il'*/
+
+            {
+            display: none;
+        }
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(17),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(17),
+
+        /*'>10'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(18),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(18),
+
+        /*'10-5'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(19),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(19),
+
+        /*'5-2'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(20),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(20),
+
+        /*'2-1'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(21),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(21),
+
+        /*'1-0.5'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(22),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(22),
+
+        /*'0.5-0.25'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(23),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(23),
+
+        /*'0.25-0.01'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(24),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(24),
+
+        /*'>0.1'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(25),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(25),
+
+        /*'>0.05'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(29),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(29),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(30),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(30),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(31),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(31),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(33),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(33),
+
+        /*'hb'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(34),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(34),
+
+        /*'ht'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(35),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(35),
+
+        /*'h0'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(36),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(36),
+
+        /*'s0'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(37),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(37),
+
+        /*'m'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(38),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(38),
+
+        /*'p'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(39),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(39),
+
+        /*'pd'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(40),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(40),
+
+        /*'ps'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(41),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(41),
+
+        /*'n'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(42),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(42),
+
+        /*'e'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(43),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(43),
+
+        /*'Sr'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(44),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(44),
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(48),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(48),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(49),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(49),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(50),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(50),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(51),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(51),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(52),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(52),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(53),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(53),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(54),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(54),
+
+        /*'Wl'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(55),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(55),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(56),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(56),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(57),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(57),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(58),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(58),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(59),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(59),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(60),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(60),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(61),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(61),
+
+        /*'Wp'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(62),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(62),
+
+        /*'Ip'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(63),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(63),
+
+        /*'Il'*/
+
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(68),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(68),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_MS1 th:nth-child(69),
+        .defaultLaboratoryFactsTableHide_MS1 td:nth-child(69)
+        /*'q0'*/
+
+            {
+            display: none;
+        }
+
+        .defaultLaboratoryFactsTableHide_MC2 th:nth-child(7),
+        .defaultLaboratoryFactsTableHide_MC2 td:nth-child(7),
+
+        /*'P0'*/
+
+        .defaultLaboratoryFactsTableHide_MC2 th:nth-child(8),
+        .defaultLaboratoryFactsTableHide_MC2 td:nth-child(8),
+
+        /*'P10'*/
+
+        .defaultLaboratoryFactsTableHide_MC2 th:nth-child(9),
+        .defaultLaboratoryFactsTableHide_MC2 td:nth-child(9),
+
+        /*'P5'*/
+
+        .defaultLaboratoryFactsTableHide_MC2 th:nth-child(10),
+        .defaultLaboratoryFactsTableHide_MC2 td:nth-child(10),
+
+        /*'P2'*/
+
+        .defaultLaboratoryFactsTableHide_MC2 th:nth-child(11),
+        .defaultLaboratoryFactsTableHide_MC2 td:nth-child(11),
+
+        /*'P1'*/
+
+        .defaultLaboratoryFactsTableHide_MC2 th:nth-child(12),
+        .defaultLaboratoryFactsTableHide_MC2 td:nth-child(12),
+
+        /*'P0.5'*/
+
+        .defaultLaboratoryFactsTableHide_MC2 th:nth-child(13),
+        .defaultLaboratoryFactsTableHide_MC2 td:nth-child(13),
+
+        /*'P0.25'*/
+
+        .defaultLaboratoryFactsTableHide_MC2 th:nth-child(14),
+        .defaultLaboratoryFactsTableHide_MC2 td:nth-child(14),
+
+        /*'P0.01'*/
+
+        .defaultLaboratoryFactsTableHide_MC2 th:nth-child(15),
+        .defaultLaboratoryFactsTableHide_MC2 td:nth-child(15),
+
+        /*'>0.1'*/
+
+        .defaultLaboratoryFactsTableHide_MC2 th:nth-child(16),
+        .defaultLaboratoryFactsTableHide_MC2 td:nth-child(16),
+
+        /*'P0.05'*/
+
+        .defaultLaboratoryFactsTableHide_MC2 th:nth-child(17),
+        .defaultLaboratoryFactsTableHide_MC2 td:nth-child(17),
+
+        /*'>10'*/
+
+        .defaultLaboratoryFactsTableHide_MC2 th:nth-child(18),
+        .defaultLaboratoryFactsTableHide_MC2 td:nth-child(18),
+
+        /*'10-5'*/
+
+        .defaultLaboratoryFactsTableHide_MC2 th:nth-child(19),
+        .defaultLaboratoryFactsTableHide_MC2 td:nth-child(19),
+
+        /*'5-2'*/
+
+        .defaultLaboratoryFactsTableHide_MC2 th:nth-child(20),
+        .defaultLaboratoryFactsTableHide_MC2 td:nth-child(20),
+
+        /*'2-1'*/
+
+        .defaultLaboratoryFactsTableHide_MC2 th:nth-child(21),
+        .defaultLaboratoryFactsTableHide_MC2 td:nth-child(21),
+
+        /*'1-0.5'*/
+
+        .defaultLaboratoryFactsTableHide_MC2 th:nth-child(22),
+        .defaultLaboratoryFactsTableHide_MC2 td:nth-child(22),
+
+        /*'0.5-0.25'*/
+
+        .defaultLaboratoryFactsTableHide_MC2 th:nth-child(23),
+        .defaultLaboratoryFactsTableHide_MC2 td:nth-child(23),
+
+        /*'0.25-0.01'*/
+
+        .defaultLaboratoryFactsTableHide_MC2 th:nth-child(24),
+        .defaultLaboratoryFactsTableHide_MC2 td:nth-child(24),
+
+        /*'>0.1'*/
+
+        .defaultLaboratoryFactsTableHide_MC2 th:nth-child(25),
+        .defaultLaboratoryFactsTableHide_MC2 td:nth-child(25)
+        /*'>0.05'*/
+
+            {
+            display: none;
+        }
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(7),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(7),
+
+        /*'P0'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(8),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(8),
+
+        /*'P10'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(9),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(9),
+
+        /*'P5'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(10),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(10),
+
+        /*'P2'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(11),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(11),
+
+        /*'P1'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(12),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(12),
+
+        /*'P0.5'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(13),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(13),
+
+        /*'P0.25'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(14),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(14),
+
+        /*'P0.01'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(15),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(15),
+
+        /*'>0.1'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(16),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(16),
+
+        /*'P0.05'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(17),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(17),
+
+        /*'>10'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(18),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(18),
+
+        /*'10-5'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(19),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(19),
+
+        /*'5-2'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(20),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(20),
+
+        /*'2-1'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(21),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(21),
+
+        /*'1-0.5'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(22),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(22),
+
+        /*'0.5-0.25'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(23),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(23),
+
+        /*'0.25-0.01'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(24),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(24),
+
+        /*'>0.1'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(25),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(25),
+
+        /*'>0.05'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(29),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(29),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(30),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(30),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(31),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(31),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(44),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(44),
+
+        /*'dh'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(45),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(45),
+
+        /*'dt'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(46),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(46),
+
+        /*'kt'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(47),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(47),
+
+        /*'k'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(48),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(48),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(49),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(49),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(50),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(50),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(51),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(51),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(52),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(52),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(53),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(53),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(58),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(58),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(59),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(59),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(60),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(60),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(67),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(67),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(68),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(68),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_MC1 th:nth-child(69),
+        .defaultLaboratoryFactsTableHide_MC1 td:nth-child(69)
+        /*'q0'*/
+
+            {
+            display: none;
+        }
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(18),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(18),
+
+        /*'10-5'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(19),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(19),
+
+        /*'5-2'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(20),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(20),
+
+        /*'2-1'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(21),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(21),
+
+        /*'1-0.5'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(22),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(22),
+
+        /*'0.5-0.25'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(23),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(23),
+
+        /*'0.25-0.01'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(24),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(24),
+
+        /*'>0.1'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(25),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(25),
+
+        /*'>0.05'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(33),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(33),
+
+        /*'hb'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(34),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(34),
+
+        /*'ht'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(35),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(35),
+
+        /*'h0'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(36),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(36),
+
+        /*'s0'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(37),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(37),
+
+        /*'m'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(38),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(38),
+
+        /*'p'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(39),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(39),
+
+        /*'pd'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(40),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(40),
+
+        /*'ps'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(41),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(41),
+
+        /*'n'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(42),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(42),
+
+        /*'e'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(43),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(43),
+
+        /*'Sr'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(48),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(48),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(49),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(49),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(50),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(50),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(51),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(51),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(52),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(52),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(53),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(53),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(54),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(54),
+
+        /*'Wl'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(55),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(55),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(56),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(56),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(57),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(57),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(58),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(58),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(59),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(59),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(60),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(60),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(61),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(61),
+
+        /*'Wp'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(62),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(62),
+
+        /*'Ip'*/
+
+        .defaultLaboratoryFactsTableHide_SS2 th:nth-child(63),
+        .defaultLaboratoryFactsTableHide_SS2 td:nth-child(63)
+        /*'Il'*/
+
+            {
+            display: none;
+        }
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(17),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(17),
+
+        /*'>10'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(18),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(18),
+
+        /*'10-5'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(19),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(19),
+
+        /*'5-2'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(20),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(20),
+
+        /*'2-1'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(21),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(21),
+
+        /*'1-0.5'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(22),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(22),
+
+        /*'0.5-0.25'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(23),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(23),
+
+        /*'0.25-0.01'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(24),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(24),
+
+        /*'>0.1'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(25),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(25),
+
+        /*'>0.05'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(29),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(29),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(30),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(30),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(31),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(31),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(33),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(33),
+
+        /*'hb'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(34),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(34),
+
+        /*'ht'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(35),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(35),
+
+        /*'h0'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(36),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(36),
+
+        /*'s0'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(37),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(37),
+
+        /*'m'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(38),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(38),
+
+        /*'p'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(39),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(39),
+
+        /*'pd'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(40),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(40),
+
+        /*'ps'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(41),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(41),
+
+        /*'n'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(42),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(42),
+
+        /*'e'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(43),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(43),
+
+        /*'Sr'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(48),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(48),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(49),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(49),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(50),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(50),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(51),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(51),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(52),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(52),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(53),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(53),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(54),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(54),
+
+        /*'Wl'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(55),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(55),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(56),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(56),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(57),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(57),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(58),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(58),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(59),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(59),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(60),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(60),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(61),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(61),
+
+        /*'Wp'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(62),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(62),
+
+        /*'Ip'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(63),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(63),
+
+        /*'Il'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(67),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(67),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(68),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(68),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_SS1 th:nth-child(69),
+        .defaultLaboratoryFactsTableHide_SS1 td:nth-child(69)
+        /*'q0'*/
+
+            {
+            display: none;
+        }
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(7),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(7),
+
+        /*'P0'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(8),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(8),
+
+        /*'P10'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(9),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(9),
+
+        /*'P5'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(10),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(10),
+
+        /*'P2'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(11),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(11),
+
+        /*'P1'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(12),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(12),
+
+        /*'P0.5'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(13),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(13),
+
+        /*'P0.25'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(14),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(14),
+
+        /*'P0.01'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(15),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(15),
+
+        /*'>0.1'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(16),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(16),
+
+        /*'P0.05'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(17),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(17),
+
+        /*'>10'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(18),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(18),
+
+        /*'10-5'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(19),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(19),
+
+        /*'5-2'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(20),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(20),
+
+        /*'2-1'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(21),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(21),
+
+        /*'1-0.5'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(22),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(22),
+
+        /*'0.5-0.25'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(23),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(23),
+
+        /*'0.25-0.01'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(24),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(24),
+
+        /*'>0.1'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(25),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(25),
+
+        /*'>0.05'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(33),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(33),
+
+        /*'hb'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(34),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(34),
+
+        /*'ht'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(35),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(35),
+
+        /*'h0'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(36),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(36),
+
+        /*'s0'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(37),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(37),
+
+        /*'m'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(38),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(38),
+
+        /*'p'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(39),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(39),
+
+        /*'pd'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(40),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(40),
+
+        /*'ps'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(41),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(41),
+
+        /*'n'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(42),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(42),
+
+        /*'e'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(43),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(43),
+
+        /*'Sr'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(44),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(44),
+
+        /*'dh'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(45),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(45),
+
+        /*'dt'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(46),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(46),
+
+        /*'kt'*/
+
+        .defaultLaboratoryFactsTableHide_SC2 th:nth-child(47),
+        .defaultLaboratoryFactsTableHide_SC2 td:nth-child(47)
+        /*'k'*/
+
+            {
+            display: none;
+        }
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(7),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(7),
+
+        /*'P0'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(8),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(8),
+
+        /*'P10'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(9),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(9),
+
+        /*'P5'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(10),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(10),
+
+        /*'P2'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(11),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(11),
+
+        /*'P1'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(12),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(12),
+
+        /*'P0.5'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(13),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(13),
+
+        /*'P0.25'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(14),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(14),
+
+        /*'P0.01'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(15),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(15),
+
+        /*'>0.1'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(16),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(16),
+
+        /*'P0.05'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(17),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(17),
+
+        /*'>10'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(18),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(18),
+
+        /*'10-5'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(19),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(19),
+
+        /*'5-2'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(20),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(20),
+
+        /*'2-1'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(21),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(21),
+
+        /*'1-0.5'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(22),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(22),
+
+        /*'0.5-0.25'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(23),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(23),
+
+        /*'0.25-0.01'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(24),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(24),
+
+        /*'>0.1'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(25),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(25),
+
+        /*'>0.05'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(29),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(29),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(30),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(30),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(31),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(31),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(33),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(33),
+
+        /*'hb'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(34),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(34),
+
+        /*'ht'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(35),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(35),
+
+        /*'h0'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(36),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(36),
+
+        /*'s0'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(37),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(37),
+
+        /*'m'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(38),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(38),
+
+        /*'p'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(39),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(39),
+
+        /*'pd'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(40),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(40),
+
+        /*'ps'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(41),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(41),
+
+        /*'n'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(42),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(42),
+
+        /*'e'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(43),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(43),
+
+        /*'Sr'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(44),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(44),
+
+        /*'dh'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(45),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(45),
+
+        /*'dt'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(46),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(46),
+
+        /*'kt'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(47),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(47),
+
+        /*'k'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(51),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(51),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(52),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(52),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(53),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(53),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(58),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(58),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(59),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(59),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(60),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(60),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(67),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(67),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(68),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(68),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_SC1 th:nth-child(69),
+        .defaultLaboratoryFactsTableHide_SC1 td:nth-child(69)
+        /*'q0'*/
+
+            {
+            display: none;
+        }
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(7),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(7),
+
+        /*'P0'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(8),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(8),
+
+        /*'P10'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(9),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(9),
+
+        /*'P5'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(10),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(10),
+
+        /*'P2'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(11),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(11),
+
+        /*'P1'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(12),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(12),
+
+        /*'P0.5'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(13),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(13),
+
+        /*'P0.25'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(14),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(14),
+
+        /*'P0.01'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(15),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(15),
+
+        /*'>0.1'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(16),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(16),
+
+        /*'P0.05'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(26),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(26),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(27),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(27),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(28),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(28),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(29),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(29),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(30),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(30),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(31),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(31),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(33),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(33),
+
+        /*'hb'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(34),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(34),
+
+        /*'ht'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(35),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(35),
+
+        /*'h0'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(36),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(36),
+
+        /*'s0'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(37),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(37),
+
+        /*'m'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(44),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(44),
+
+        /*'dh'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(45),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(45),
+
+        /*'dt'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(46),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(46),
+
+        /*'kt'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(48),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(48),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(49),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(49),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(50),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(50),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(51),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(51),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(52),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(52),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(53),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(53),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(55),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(55),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(56),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(56),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(57),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(57),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(58),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(58),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(59),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(59),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(60),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(60),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(64),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(64),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(65),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(65),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(66),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(66),
+
+        /*'q0'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(67),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(67),
+
+        /*'q1'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(68),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(68),
+
+        /*'q2'*/
+
+        .defaultLaboratoryFactsTableHide_Calc th:nth-child(69),
+        .defaultLaboratoryFactsTableHide_Calc td:nth-child(69)
+        /*'q0'*/
+
+            {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<!--
+##########################################################################################################
+Example of using column hiding options with very lage tables
+##########################################################################################################
+-->
+
+    <div class='defaultLaboratoryFactsTable'>
+        <div id='defaultLaboratoryFactsTableHide'>
+            <p>
+                <input type="radio" name="clsChanger"
+                    onchange="document.getElementById('defaultLaboratoryFactsTableHide').className = 'defaultLaboratoryFactsTableHide';" />
+                M2
+                <input type="radio" name="clsChanger"
+                    onchange="document.getElementById('defaultLaboratoryFactsTableHide').className = 'defaultLaboratoryFactsTableHide_M1';" />
+                M1
+
+                <input type="radio" name="clsChanger"
+                    onchange="document.getElementById('defaultLaboratoryFactsTableHide').className = 'defaultLaboratoryFactsTableHide_S2';" />
+                О2
+
+                <input type="radio" name="clsChanger"
+                    onchange="document.getElementById('defaultLaboratoryFactsTableHide').className = 'defaultLaboratoryFactsTableHide_S1';" />
+                О1
+
+                <input type="radio" name="clsChanger"
+                    onchange="document.getElementById('defaultLaboratoryFactsTableHide').className = 'defaultLaboratoryFactsTableHide_MS2';" />
+                МП2
+
+                <input type="radio" name="clsChanger"
+                    onchange="document.getElementById('defaultLaboratoryFactsTableHide').className = 'defaultLaboratoryFactsTableHide_MS1';" />
+                МП1
+
+                <input type="radio" name="clsChanger"
+                    onchange="document.getElementById('defaultLaboratoryFactsTableHide').className = 'defaultLaboratoryFactsTableHide_MC2';" />
+                МГ2
+
+                <input type="radio" name="clsChanger"
+                    onchange="document.getElementById('defaultLaboratoryFactsTableHide').className = 'defaultLaboratoryFactsTableHide_MC1';" />
+                МГ1
+
+                <input type="radio" name="clsChanger"
+                    onchange="document.getElementById('defaultLaboratoryFactsTableHide').className = 'defaultLaboratoryFactsTableHide_SS2';" />
+                ОП2
+
+                <input type="radio" name="clsChanger"
+                    onchange="document.getElementById('defaultLaboratoryFactsTableHide').className = 'defaultLaboratoryFactsTableHide_SS1';" />
+                ОП1
+
+                <input type="radio" name="clsChanger"
+                    onchange="document.getElementById('defaultLaboratoryFactsTableHide').className = 'defaultLaboratoryFactsTableHide_SC2';" />
+                ОГ2
+
+                <input type="radio" name="clsChanger"
+                    onchange="document.getElementById('defaultLaboratoryFactsTableHide').className = 'defaultLaboratoryFactsTableHide_SC1';" />
+                ОГ1
+
+                <input type="radio" name="clsChanger"
+                    onchange="document.getElementById('defaultLaboratoryFactsTableHide').className = 'defaultLaboratoryFactsTableHide_Calc';" />
+                РЧ
+
+                <input type="radio" name="clsChanger"
+                    onchange="document.getElementById('defaultLaboratoryFactsTableHide').className = 'defaultLaboratoryFactsTableHide_None';" />
+                КР
+            </p>
+            <div id="groundLaboratoryFactsTable">
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        // Set target to 'groundLaboratoryFactsTable1_table' element
+        var tab1 = new tablesOnHOT.groundLaboratoryFactsTable('groundLaboratoryFactsTable');
+
+        // Pass initial data as overrideConfig argument
+        hot = tab1.render({});
+    </script>
+</body>
+
+</html>

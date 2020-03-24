@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css"
+        href="https://docs.handsontable.com/0.35.0/bower_components/handsontable/dist/handsontable.full.min.css">
+
+    <script type="text/javascript"
+        src="https://docs.handsontable.com/0.35.0/bower_components/handsontable/dist/handsontable.full.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+
+
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/tableTools.tableCalculator.js"></script>
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/tableTools.HOTUtils.js"></script>
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/tablesOnHOT.js"></script>
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/cagCalcTable.js"></script>
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/sptFactTable.js"></script>
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/sptCalcTable.js"></script>
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/groundLaboratoryFactsTable.js"></script>
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/groundLaboratoryCalcTable.js"></script>
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/cptFactTable.js"></script>
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/vcxz09876/egjs/0fa8f8e442ad9c382c218a541f452c3137d8843f/src/cptCalcTable.js"></script>
+
+    <style>
+        .groundLaboratoryCalcTable th:nth-child(14),
+        .groundLaboratoryCalcTable th:nth-child(18),
+        .groundLaboratoryCalcTable th:nth-child(20),
+        .groundLaboratoryCalcTable th:nth-child(21),
+        .groundLaboratoryCalcTable th:nth-child(22),
+        .groundLaboratoryCalcTable th:nth-child(26),
+        .groundLaboratoryCalcTable th:nth-child(27),
+        .groundLaboratoryCalcTable th:nth-child(30) {
+            background-color: #fdc35f;
+        }
+
+        .groundLaboratoryCalcTable th:nth-child(2),
+        .groundLaboratoryCalcTable th:nth-child(3),
+        .groundLaboratoryCalcTable th:nth-child(4),
+        .groundLaboratoryCalcTable th:nth-child(5),
+        .groundLaboratoryCalcTable th:nth-child(6) {
+            background-color: #ddeaff;
+        }
+
+        .groundLaboratoryCalcTable th:nth-child(7),
+        .groundLaboratoryCalcTable th:nth-child(8),
+        .groundLaboratoryCalcTable th:nth-child(9),
+        .groundLaboratoryCalcTable th:nth-child(10),
+        .groundLaboratoryCalcTable th:nth-child(11),
+        .groundLaboratoryCalcTable th:nth-child(12),
+        .groundLaboratoryCalcTable th:nth-child(13),
+        .groundLaboratoryCalcTable th:nth-child(15) {
+            background-color: #fdffb2;
+        }
+
+
+        .groundLaboratoryCalcTable th:nth-child(16),
+        .groundLaboratoryCalcTable th:nth-child(17),
+        .groundLaboratoryCalcTable th:nth-child(19),
+        .groundLaboratoryCalcTable th:nth-child(23),
+        .groundLaboratoryCalcTable th:nth-child(24),
+        .groundLaboratoryCalcTable th:nth-child(25),
+        .groundLaboratoryCalcTable th:nth-child(28),
+        .groundLaboratoryCalcTable th:nth-child(29) {
+            background-color: #e7ffd5;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="groundLaboratoryCalcTable" class='groundLaboratoryCalcTable'></div>
+
+    <script type="text/javascript">
+        // Set target to 'cpt1_table' element
+        var tab1 = new tablesOnHOT.groundLaboratoryCalcTable('groundLaboratoryCalcTable');
+
+        // Pass initial data as overrideConfig argument
+        hot = tab1.render({});
+    </script>
+</body>
+
+</html>
