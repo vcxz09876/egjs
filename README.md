@@ -1,4 +1,4 @@
-## EGJS - utils for geology in Belarus (утилиты для инженерной геологии в РБ)
+## EGJS
 
 [CPT Calculations (Расчеты по статическому зондированию)](https://vcxz09876.github.io/egjs/examples/cptCalcTable.html)
 
