@@ -1,4 +1,4 @@
-## EGJS
+## EGJS Sheets (Таблицы)
 
 [CPT Calculations (Расчеты по статическому зондированию)](https://vcxz09876.github.io/egjs/examples/cptCalcTable.html)
 
